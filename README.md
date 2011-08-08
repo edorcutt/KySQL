@@ -50,10 +50,6 @@ This function returns the status code from the query:
 
     Status = KySQL:KyStatus(KyObject);
 
-200
-401 Unauthorized
-503 Service Unavailable
-
 ### KySQL:KyError();
 
 This function returns the MySQL error message when a status code of 503 is returned by the query:
@@ -79,3 +75,17 @@ This function simplifies the process of writing database inserts. It returns a c
 The first parameter is the table name, the second is a hash with the to be inserted. The above example produces:
 
     INSERT INTO neubook ('email','name','phone') VALUES ('edo@example.org','Ed Orcutt','(801) 555-1234')
+
+Installation
+------------
+
+In order for KySQL to access your database server the PHP file `KySQL.php` will need to be placed on a publicly available web server which has access to the database. The default configuration assumes that the database server is available via `localhost`. However, you should be able to access a remote database server host by changing `$dbhost` to the hostname of the database server.
+
+Before placing `KySQL.php` on your web server you will need to set the API key: `$THEKEY`. The value should be unique to each instance in order to provide security. The API key will be needed when configuring the KRL module as well.
+
+Usage
+-----
+
+There are two approaches which you can take to use the Kynetx KySQL module. The simplist approach is to use the public module that has been released here. The second approach is to create your own module using the KRL source provided in this repository. The second approach will be left as a excerise for the reader.
+
+To use the public module start with the `Hello-KySQL.krl` source code. Replace `apikey` with the exact value you used for `$THEKEY` in the file `KySQL.php`. Next, set `callback` to the full public URL for `KySQL.php` what you placed on your public web server. Finally, set `username`, `password` and `database` to the credentials of your database server.
