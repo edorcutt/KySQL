@@ -69,7 +69,7 @@ ruleset a169x379 {
       // array of database table column names, sorted
       colNameArray  = KyRow.keys().sort();
       // join into single string, with each column name within single quotes
-      colNameString = (colNameArray.map(function(x) {"'#{x}'"})).join(",");
+      colNameString = (colNameArray.map(function(x) {"#{x}"})).join(",");
 
       // extract array of database table column values
       valuesArray   = colNameArray.map(function(x) {KyRow.pick("$..#{x}")});
