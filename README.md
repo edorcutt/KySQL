@@ -44,6 +44,14 @@ Returns the following JSON object:
         ]
     }
 
+### KySQL:KyRowCount();
+
+This function returns the number of rows from a result set:
+
+    Status = KySQL:KyRowCount(KyObject);
+
+This function is only valid for SELECT statement that returns an actual result set.
+
 ### KySQL:KyStatus();
 
 This function returns the status code from the query:

@@ -10,6 +10,7 @@ error_reporting(0);
 
 $THEKEY = "YOUR-KEY-HERE";
 $dbhost = "localhost";
+$rowcnt = 0;
 
 // ========================================================================
 // It all begins here
@@ -57,19 +58,22 @@ if ( substr(strtoupper($kquery),0,6) == 'INSERT' ||
   exit;
 };
 
+// SELECT
+if ( substr(strtoupper($kquery),0,6) == 'SELECT') {
+  $rowcnt = mysql_num_rows($dbresult);
+};
+
 // create one master array of the records
 $rows = array();
 if(mysql_num_rows($dbresult)) {
   while($row = mysql_fetch_assoc($dbresult)) {
     $rows[] = $row;
   }
-} else {
-  notFound();
-  exit;
 }
 
 // output in JSON format
 header('Content-type: application/json');
+header('row-count: ' . $rowcnt);
 echo json_encode(array('results'=>$rows));
 
 // Close database connection ...

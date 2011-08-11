@@ -8,7 +8,7 @@ ruleset a169x379 {
     author "Ed Orcutt, LOBOSLLC"
     logging on
 
-    provides KyQuery, KyResult, KyStatus, KyError, KyInsertString
+    provides KyQuery, KyResult, KyStatus, KyError, KyRowCount, KyInsertString
     configure using apikey   = ""
               and   callback = ""
               and   username = ""
@@ -37,7 +37,7 @@ ruleset a169x379 {
                    "dbname" : "#{dbName}",
                    "kquery" : "#{queryStr}"
                    },
-       "response_headers": ["status-message"]
+       "response_headers": ["status-message", "row-count"]
       }
     };
 
@@ -61,7 +61,12 @@ ruleset a169x379 {
 
     // --------------------------------------------
     KyError = function(KyObject) {
-      KyObject.pick("$.status-message");
+      KyObject.pick("$.status-message", true).head() || "";
+    };
+
+    // --------------------------------------------
+    KyRowCount = function(KyObject) {
+      KyObject.pick("$.row-count", true).head() || 0;
     };
 
     // --------------------------------------------
