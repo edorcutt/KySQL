@@ -8,7 +8,9 @@ ruleset a169x379 {
     author "Ed Orcutt, LOBOSLLC"
     logging on
 
-    provides KyQuery, KyResult, KyStatus, KyError, KyRowCount, KyInsertString
+    provides KyQuery, KyResult, KyStatus, KyError, KyRowCount, KyInsertString,
+             KyStatusOK
+
     configure using apikey   = ""
               and   callback = ""
               and   username = ""
@@ -24,6 +26,8 @@ ruleset a169x379 {
     dbUser = username || "test-database-username";
     dbPass = password || "test-database-password";
     dbName = database || "test-database-name";
+
+    KyStatusOK = 200;
 
     // --------------------------------------------
     // build the options hash for making a POST

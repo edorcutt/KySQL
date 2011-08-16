@@ -58,6 +58,12 @@ This function returns the status code from the query:
 
     Status = KySQL:KyStatus(KyObject);
 
+### KySQL:KyStatusOK
+
+This contant can be used to determine if the KySQL function completed without error:
+
+    KySQL:KyStatus(KyObject) == KySQL:KyStatusOK
+
 ### KySQL:KyError();
 
 This function returns the MySQL error message when a status code of 503 is returned by the query:
