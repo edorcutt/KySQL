@@ -8,7 +8,7 @@ ruleset a169x379 {
     author "Ed Orcutt, LOBOSLLC"
     logging on
 
-    provides KyQuery, KyResult, KyStatus, KyError, KyRowCount, KyInsertString,
+    provides KyQuery, KyResult, KyRow, KyStatus, KyError, KyRowCount, KyInsertString,
              KyStatusOK
 
     configure using apikey   = ""
@@ -56,6 +56,11 @@ ruleset a169x379 {
     // --------------------------------------------
     KyResult = function(KyObject) {
       KyObject.pick("$.content").decode();
+    };
+
+    // --------------------------------------------
+    KyRow = function(KyObject) {
+      KyObject.pick("$.content").decode().pick("$.results", true).head().head();
     };
 
     // --------------------------------------------

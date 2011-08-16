@@ -44,6 +44,13 @@ Returns the following JSON object:
         ]
     }
 
+### KySQL:KyRow();
+
+This function returns a single result row as a KRL hash. This function assumes that there is only a single row in the result set.
+
+    KySelect = KySQL:KyQuery("SELECT * FROM addressbook WHERE uid = '42'");
+    KyHash = (KySQL:KyRowCount(KySelect) == 1) => KySQL:KyRow(KySelect) | {};
+
 ### KySQL:KyRowCount();
 
 This function returns the number of rows from a result set:
